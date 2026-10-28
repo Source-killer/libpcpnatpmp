@@ -132,8 +132,9 @@ int main(void) {
         // a reply carrying the new nonce finds its flow
         TEST(pcp_get_flow(&f1->kd, get_pcp_server(ctx, f1->pcp_server_indx)) ==
              f1);
-        TEST(pcp_get_flow(&f1->next_child->kd,
-                          get_pcp_server(ctx, f1->next_child->pcp_server_indx)) ==
+        TEST(pcp_get_flow(
+                 &f1->next_child->kd,
+                 get_pcp_server(ctx, f1->next_child->pcp_server_indx)) ==
              f1->next_child);
 
         req = (pcp_request_t *)build_pcp_msg(f1);
