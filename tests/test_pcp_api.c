@@ -161,7 +161,8 @@ int main(void) {
         struct sockaddr_in6 global_src;
         struct sockaddr_in6 link_local_src;
 
-        memcpy(&global_src, Sock_pton("[2001:db8::1]:1234"), sizeof(global_src));
+        memcpy(&global_src, Sock_pton("[2001:db8::1]:1234"),
+               sizeof(global_src));
         global_src.sin6_scope_id = 1;
         memcpy(&link_local_src, Sock_pton("[fe80::2]:1234"),
                sizeof(link_local_src));
@@ -169,8 +170,8 @@ int main(void) {
 
         ctx = pcp_init(DISABLE_AUTODISCOVERY, NULL);
         TEST(pcp_add_server(ctx, Sock_pton("[::1]:5351"), 2) == 0);
-        TEST((f1 = pcp_new_flow(ctx, (struct sockaddr *)&global_src, NULL,
-                                NULL, IPPROTO_TCP, 100, NULL)) != NULL);
+        TEST((f1 = pcp_new_flow(ctx, (struct sockaddr *)&global_src, NULL, NULL,
+                                IPPROTO_TCP, 100, NULL)) != NULL);
         TEST(f1->kd.scope_id == 0);
         TEST(pcp_new_flow(ctx, (struct sockaddr *)&link_local_src, NULL, NULL,
                           IPPROTO_TCP, 100, NULL) == NULL);
