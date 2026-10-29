@@ -25,6 +25,9 @@ The format is inspired by Keep a Changelog and this project follows Semantic Ver
 - A NAT-PMP reply, which carries no nonce, never matched a flow whose nonce
   was set with `pcp_flow_set_nonce()`: it is looked up under the server's
   nonce. A flow to a server that speaks NAT-PMP now keeps the server's nonce.
+- A flow failed by a long lifetime error, such as NOT_AUTHORIZED, dropped
+  the error's lifetime, which says how long the server will keep refusing.
+  `pcp_flow_get_info()` now reports it as `recv_lifetime_end`.
 
 ## [1.0.0] - 2026-05-14
 
