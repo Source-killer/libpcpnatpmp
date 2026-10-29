@@ -25,6 +25,8 @@ typedef struct server_info {
     struct in6_addr ext_ip;
     uint8_t app_bit;
     uint8_t ret_dscp;
+    uint8_t override_lifetime; // answer with `lifetime` instead of the one asked
+    uint32_t lifetime;
     char log_file[MAX_LOG_FILE];
     struct timeval tv;
     time_t epoch_time_start;
